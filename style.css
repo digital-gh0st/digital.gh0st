@@ -200,7 +200,7 @@ body {
   border-radius: 50%;
   border: none;
   color: var(--white);
-  background: rgba(255,255,255,.05);
+  background: transparent;
   text-decoration: none;
   font-size: 1.2rem;
   transition: transform .2s, background .2s, box-shadow .2s;
