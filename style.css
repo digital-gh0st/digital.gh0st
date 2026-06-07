@@ -129,72 +129,8 @@ body {
   50% { transform: rotate(4deg) scale(1.04); opacity: .72; }
 }
 
-.name-block {
-  min-width: 0;
-}
-
 .name-block h1 {
   margin: 0 0 6px;
-}
-
-/* This brings back the original glitchy look, but keeps it smaller. */
-.ghost-name {
-  position: relative;
-  display: inline-block;
-  font-family: "Rubik Glitch", cursive;
-  font-size: clamp(2.4rem, 6vw, 3.7rem);
-  line-height: .9;
-  color: #fff;
-  letter-spacing: .02em;
-  text-transform: lowercase;
-  text-shadow:
-    1px 0 rgba(255,255,255,.95),
-    -1px 0 rgba(180,180,180,.75),
-    0 0 10px rgba(255,255,255,.2);
-  animation: nameGlitch 1.35s infinite steps(2);
-}
-
-.ghost-name::before,
-.ghost-name::after {
-  content: attr(data-text);
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  opacity: .42;
-}
-
-.ghost-name::before {
-  transform: translate(-2px, 0);
-  clip-path: inset(0 0 55% 0);
-  text-shadow: 2px 0 rgba(255,255,255,.9);
-  animation: nameSliceTop .7s infinite steps(2);
-}
-
-.ghost-name::after {
-  transform: translate(2px, 0);
-  clip-path: inset(48% 0 0 0);
-  text-shadow: -2px 0 rgba(255,255,255,.7);
-  animation: nameSliceBottom .9s infinite steps(2);
-}
-
-@keyframes nameGlitch {
-  0%, 88%, 100% { transform: translate(0,0); filter: blur(0); }
-  89% { transform: translate(-1px,1px); filter: blur(.4px); }
-  90% { transform: translate(2px,-1px); }
-  91% { transform: translate(-2px,0); }
-  92% { transform: translate(0,0); filter: blur(0); }
-}
-
-@keyframes nameSliceTop {
-  0%, 80%, 100% { transform: translate(0,0); opacity: .25; }
-  81% { transform: translate(-5px,-1px); opacity: .65; }
-  82% { transform: translate(3px,1px); opacity: .35; }
-}
-
-@keyframes nameSliceBottom {
-  0%, 74%, 100% { transform: translate(0,0); opacity: .2; }
-  75% { transform: translate(4px,1px); opacity: .6; }
-  76% { transform: translate(-3px,-1px); opacity: .35; }
 }
 
 .handle-row {
@@ -220,17 +156,6 @@ body {
   font-size: clamp(1rem, 3vw, 1.4rem);
   color: var(--white);
   text-shadow: 0 0 12px rgba(255,255,255,.24);
-  min-height: 1.5em;
-}
-
-.typing-cursor {
-  display: inline-block;
-  margin-left: 3px;
-  animation: blink 1s infinite;
-}
-
-@keyframes blink {
-  50% { opacity: 0; }
 }
 
 .badges, .links {
@@ -297,24 +222,12 @@ body {
 .divider { display:inline-block; width:7px; height:7px; background:#aaa; border-radius:50%; margin:0 6px; opacity:.8; }
 
 .join {
-  color: var(--white);
+  color: white;
   text-decoration: none;
-  background: rgba(255,255,255,.08);
-  border: 1px solid rgba(255,255,255,.22);
+  background: var(--green);
   padding: 13px 18px;
   border-radius: 12px;
   font-weight: bold;
-  letter-spacing: .12em;
-  box-shadow: inset 0 0 18px rgba(255,255,255,.035);
-  transition: transform .2s ease, background .2s ease, box-shadow .2s ease;
-  position: relative;
-  z-index: 5;
-}
-
-.join:hover {
-  transform: translateY(-2px);
-  background: rgba(255,255,255,.16);
-  box-shadow: 0 0 18px rgba(255,255,255,.12);
 }
 
 .music-player { margin-top: 16px; }
@@ -322,7 +235,7 @@ body {
   width: 64px;
   height: 64px;
   border-radius: 12px;
-  background-image: url("assets/music.jpg");
+  background-image: url("assets/avatar.jpg");
   background-size: cover;
   background-position: center;
   filter: grayscale(1) contrast(1.35);
@@ -333,9 +246,200 @@ audio { width: 100%; height: 36px; filter: grayscale(1) contrast(1.2); }
 
 @media (max-width: 560px) {
   .profile-card { padding: 22px 16px; border-radius: 22px; }
-  .top-row { align-items: center; justify-content: center; gap: 14px; }
+  .top-row { align-items: flex-start; gap: 16px; }
   .avatar-wrap { width: 96px; height: 96px; }
-  .ghost-name { font-size: clamp(2.25rem, 14vw, 3.2rem); }
   .server-card, .music-player { border-radius: 18px; }
   .join { padding: 11px 13px; }
+}
+
+.typing-cursor {
+  display: inline-block;
+  margin-left: 3px;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes ghostGlitch {
+  0%, 90%, 100% {
+    transform: translateX(0);
+    text-shadow:
+      2px 0 rgba(255,255,255,.95),
+     -2px 0 rgba(255,255,255,.85),
+      0 0 8px rgba(255,255,255,.25);
+  }
+
+  91% {
+    transform: translateX(-2px);
+    text-shadow:
+      4px 0 rgba(255,255,255,.95),
+     -4px 0 rgba(255,255,255,.85),
+      0 0 12px rgba(255,255,255,.35);
+  }
+
+  92% {
+    transform: translateX(2px);
+  }
+
+  93% {
+    transform: translateX(-1px);
+  }
+
+  94% {
+    transform: translateX(0);
+  }
+}
+
+.ghost-name:hover {
+  animation-duration: .25s;
+}
+
+
+/* FINAL OVERRIDES — name, join button, custom music player */
+.name-block h1.ghost-name {
+  margin: 0 0 6px !important;
+  font-family: "Rubik Glitch", cursive !important;
+  font-size: clamp(2.1rem, 6vw, 3.4rem) !important;
+  line-height: .85 !important;
+  color: #fff !important;
+  letter-spacing: .03em;
+  text-transform: lowercase;
+  text-shadow:
+    1px 0 rgba(255,255,255,.8),
+   -1px 0 rgba(255,255,255,.45),
+    0 0 10px rgba(255,255,255,.22);
+  animation: nameJitter 1.4s infinite steps(1);
+}
+
+.name-block h1.ghost-name::before,
+.name-block h1.ghost-name::after {
+  content: attr(data-text);
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+@keyframes nameJitter {
+  0%, 86%, 100% { transform: translate(0,0) skew(0deg); filter: blur(0); }
+  87% { transform: translate(-2px,1px) skew(-2deg); filter: blur(.4px); }
+  88% { transform: translate(2px,-1px) skew(2deg); filter: blur(.2px); }
+  89% { transform: translate(-1px,0) skew(-1deg); }
+  90% { transform: translate(1px,0) skew(1deg); }
+  91% { transform: translate(0,0) skew(0deg); filter: blur(0); }
+}
+
+.join {
+  color: #fff !important;
+  text-decoration: none !important;
+  background: rgba(255,255,255,.08) !important;
+  border: 1px solid rgba(255,255,255,.22) !important;
+  padding: 13px 18px !important;
+  border-radius: 12px !important;
+  font-weight: bold !important;
+  letter-spacing: .12em;
+  box-shadow: inset 0 0 18px rgba(255,255,255,.035);
+  transition: transform .2s ease, background .2s ease, box-shadow .2s ease;
+}
+
+.join:hover {
+  transform: translateY(-2px);
+  background: rgba(255,255,255,.15) !important;
+  box-shadow: 0 0 18px rgba(255,255,255,.12);
+}
+
+.cover {
+  background-image: url("assets/music.jpg") !important;
+}
+
+.custom-player audio {
+  display: none;
+}
+
+.player-controls {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border-radius: 999px;
+  background: rgba(0,0,0,.72);
+  border: 1px solid rgba(255,255,255,.14);
+  box-shadow: inset 0 0 18px rgba(255,255,255,.035);
+}
+
+.play-btn {
+  width: 30px;
+  height: 30px;
+  flex: 0 0 auto;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: 50%;
+  background: rgba(255,255,255,.08);
+  color: #fff;
+  cursor: pointer;
+}
+
+.play-btn:hover {
+  background: rgba(255,255,255,.16);
+}
+
+.time {
+  min-width: 38px;
+  font-size: .72rem;
+  color: rgba(255,255,255,.74);
+  letter-spacing: .04em;
+}
+
+.progress {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 100%;
+  height: 4px;
+  border-radius: 999px;
+  background: linear-gradient(to right, #fff 0%, #fff var(--progress, 0%), rgba(255,255,255,.25) var(--progress, 0%), rgba(255,255,255,.25) 100%);
+  outline: none;
+}
+
+.progress::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #fff;
+  cursor: pointer;
+}
+
+.progress::-moz-range-thumb {
+  width: 10px;
+  height: 10px;
+  border: 0;
+  border-radius: 50%;
+  background: #fff;
+  cursor: pointer;
+}
+
+.track-title span {
+  color: rgba(255,255,255,.5);
+}
+
+@media (max-width: 560px) {
+  .name-block h1.ghost-name {
+    font-size: clamp(2rem, 12vw, 3rem) !important;
+  }
+
+  .player-controls {
+    gap: 7px;
+    padding: 9px 10px;
+  }
+
+  .time {
+    min-width: 32px;
+    font-size: .65rem;
+  }
 }
