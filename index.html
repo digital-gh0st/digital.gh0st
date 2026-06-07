@@ -3,22 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <title>ᴅɪɢɪᴛᴀʟ.ɢʜᴏsᴛ</title>
-
-  <link rel="icon" type="image/png" href="assets/header.png?v=3">
-  <link rel="shortcut icon" type="image/png" href="assets/header.png?v=3">
-  <link rel="apple-touch-icon" href="assets/header.png?v=3">
-
+  <title>𝔤𝔥𝔬𝔰𝔱</title>
+  <link rel="icon" type="image/png" href="assets/header.png?v=4">
+  <link rel="shortcut icon" type="image/png" href="assets/header.png?v=4">
+  <link rel="apple-touch-icon" href="assets/header.png?v=4">
   <link rel="stylesheet" href="style.css" />
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Rubik+Glitch&family=Share+Tech+Mono&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
   <script src="https://kit.fontawesome.com/4b9ba14b0f.js" crossorigin="anonymous"></script>
 </head>
-
 <body>
   <div class="bg"></div>
 
@@ -26,12 +20,7 @@
     <section class="profile-card">
       <div class="top-row">
         <div class="avatar-wrap">
-          <img
-            class="discord-decoration"
-            src="https://cdn.discordapp.com/avatar-decoration-presets/a_a7e2ab61c12d84c8b538573f28d58ae0.png"
-            alt=""
-            aria-hidden="true"
-          />
+          <img class="discord-decoration" src="https://cdn.discordapp.com/avatar-decoration-presets/a_a7e2ab61c12d84c8b538573f28d58ae0.png" alt="" />
           <img class="avatar" src="assets/avatar.jpg" alt="Discord profile picture" />
         </div>
 
@@ -39,8 +28,8 @@
           <h1 class="ghost-name">𝔤𝔥𝔬𝔰𝔱</h1>
           <div class="handle-row">
             <span>@digital.gh0st</span>
-            <span class="server-tag">
-              <img src="assets/servertag.png" alt="server tag" />
+            <span class="server-badge-combo">
+              <img src="assets/servertag.png" alt="XIII server tag" />
               <span>.ⅻⅰ.</span>
             </span>
           </div>
@@ -74,80 +63,62 @@
         <a class="join" href="https://discord.gg/thirteen-xiii" target="_blank" rel="noopener noreferrer">JOIN</a>
       </section>
 
-      <section class="music-player custom-player">
-        <img class="cover-img" id="coverArt" src="assets/model citizen art.jpg" alt="Album cover" />
+      <section class="music-player">
+        <img class="song-cover" id="songCover" src="assets/model citizen art.jpg" alt="Album art" />
 
         <div class="track">
           <div class="track-title" id="trackTitle">MODEL CITIZEN — MALE TEARS</div>
 
           <div class="player-controls">
             <button class="player-btn" id="prevBtn" type="button" aria-label="Previous song">‹</button>
-            <button class="player-btn play-main" id="playBtn" type="button" aria-label="Play music">▶</button>
+            <button class="player-btn play" id="playBtn" type="button" aria-label="Play">▶</button>
             <button class="player-btn" id="nextBtn" type="button" aria-label="Next song">›</button>
-
             <span class="time" id="currentTime">0:00</span>
-
-            <input
-              class="progress"
-              id="progressBar"
-              type="range"
-              min="0"
-              max="100"
-              value="0"
-              aria-label="Song progress"
-            />
-
+            <input class="progress" id="progressBar" type="range" min="0" max="100" value="0" aria-label="Song progress" />
             <span class="time" id="duration">0:00</span>
           </div>
 
-          <audio id="song" preload="metadata"></audio>
+          <audio id="audioPlayer" preload="metadata"></audio>
         </div>
       </section>
     </section>
   </main>
 
   <script>
-    const phrases = [
-      "WIFE · MOTHER · SPOOKY",
-      "ARCHIVING THE STRANGE"
-    ];
-
+    const phrases = ["WIFE · MOTHER · SPOOKY", "ARCHIVING THE STRANGE"];
     const typingTarget = document.getElementById("typingLine");
     let phraseIndex = 0;
     let charIndex = 0;
     let deleting = false;
 
     function typeLoop() {
-      const currentPhrase = phrases[phraseIndex];
+      const phrase = phrases[phraseIndex];
 
       if (!deleting) {
-        typingTarget.textContent = currentPhrase.substring(0, charIndex);
+        typingTarget.textContent = phrase.substring(0, charIndex);
         charIndex++;
 
-        if (charIndex > currentPhrase.length) {
+        if (charIndex > phrase.length) {
           deleting = true;
-          setTimeout(typeLoop, 2000);
+          setTimeout(typeLoop, 1900);
           return;
         }
       } else {
-        typingTarget.textContent = currentPhrase.substring(0, charIndex);
+        typingTarget.textContent = phrase.substring(0, charIndex);
         charIndex--;
 
         if (charIndex < 0) {
           deleting = false;
           phraseIndex = (phraseIndex + 1) % phrases.length;
-          setTimeout(typeLoop, 400);
+          setTimeout(typeLoop, 350);
           return;
         }
       }
 
-      setTimeout(typeLoop, deleting ? 45 : 100);
+      setTimeout(typeLoop, deleting ? 45 : 95);
     }
-
     typeLoop();
-  </script>
 
-  <script>
     const playlist = [
       {
         title: "MODEL CITIZEN — MALE TEARS",
@@ -166,88 +137,83 @@
       }
     ];
 
-    const song = document.getElementById("song");
+    const audio = document.getElementById("audioPlayer");
     const playBtn = document.getElementById("playBtn");
     const prevBtn = document.getElementById("prevBtn");
     const nextBtn = document.getElementById("nextBtn");
-    const progressBar = document.getElementById("progressBar");
-    const currentTimeEl = document.getElementById("currentTime");
-    const durationEl = document.getElementById("duration");
-    const trackTitle = document.getElementById("trackTitle");
-    const coverArt = document.getElementById("coverArt");
-
+    const title = document.getElementById("trackTitle");
+    const cover = document.getElementById("songCover");
+    const progress = document.getElementById("progressBar");
+    const currentTime = document.getElementById("currentTime");
+    const duration = document.getElementById("duration");
     let currentTrack = 0;
 
     function formatTime(seconds) {
       if (!Number.isFinite(seconds)) return "0:00";
-      const mins = Math.floor(seconds / 60);
-      const secs = Math.floor(seconds % 60).toString().padStart(2, "0");
-      return `${mins}:${secs}`;
+      const min = Math.floor(seconds / 60);
+      const sec = Math.floor(seconds % 60).toString().padStart(2, "0");
+      return `${min}:${sec}`;
     }
 
     function loadTrack(index) {
       const track = playlist[index];
-      song.src = track.file;
-      trackTitle.textContent = track.title;
-      coverArt.src = track.cover;
-      coverArt.alt = `${track.title} cover`;
-      progressBar.value = 0;
-      progressBar.style.setProperty("--progress", "0%");
-      currentTimeEl.textContent = "0:00";
-      durationEl.textContent = "0:00";
+      audio.src = track.file;
+      title.textContent = track.title;
+      cover.src = track.cover;
+      progress.value = 0;
+      currentTime.textContent = "0:00";
+      duration.textContent = "0:00";
       playBtn.textContent = "▶";
     }
 
-    function playCurrent() {
-      song.play();
+    function playTrack() {
+      audio.play();
       playBtn.textContent = "❚❚";
     }
 
+    function pauseTrack() {
+      audio.pause();
+      playBtn.textContent = "▶";
+    }
+
     playBtn.addEventListener("click", () => {
-      if (song.paused) {
-        playCurrent();
-      } else {
-        song.pause();
-        playBtn.textContent = "▶";
-      }
+      audio.paused ? playTrack() : pauseTrack();
     });
 
     nextBtn.addEventListener("click", () => {
       currentTrack = (currentTrack + 1) % playlist.length;
       loadTrack(currentTrack);
-      playCurrent();
+      playTrack();
     });
 
     prevBtn.addEventListener("click", () => {
       currentTrack = (currentTrack - 1 + playlist.length) % playlist.length;
       loadTrack(currentTrack);
-      playCurrent();
+      playTrack();
     });
 
-    song.addEventListener("loadedmetadata", () => {
-      durationEl.textContent = formatTime(song.duration);
+    audio.addEventListener("loadedmetadata", () => {
+      duration.textContent = formatTime(audio.duration);
     });
 
-    song.addEventListener("timeupdate", () => {
-      const percent = (song.currentTime / song.duration) * 100 || 0;
-      progressBar.value = percent;
-      progressBar.style.setProperty("--progress", `${percent}%`);
-      currentTimeEl.textContent = formatTime(song.currentTime);
+    audio.addEventListener("timeupdate", () => {
+      progress.value = audio.duration ? (audio.currentTime / audio.duration) * 100 : 0;
+      currentTime.textContent = formatTime(audio.currentTime);
     });
 
-    progressBar.addEventListener("input", () => {
-      if (!Number.isFinite(song.duration)) return;
-      song.currentTime = (progressBar.value / 100) * song.duration;
-      progressBar.style.setProperty("--progress", `${progressBar.value}%`);
+    progress.addEventListener("input", () => {
+      if (audio.duration) {
+        audio.currentTime = (progress.value / 100) * audio.duration;
+      }
     });
 
-    song.addEventListener("ended", () => {
+    audio.addEventListener("ended", () => {
       currentTrack = (currentTrack + 1) % playlist.length;
       loadTrack(currentTrack);
-      playCurrent();
+      playTrack();
     });
 
-    loadTrack(0);
+    loadTrack(currentTrack);
   </script>
 </body>
 </html>
