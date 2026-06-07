@@ -330,3 +330,10 @@ body {
   .player-btn { width: 30px; height: 30px; }
   .time { font-size: .7rem; }
 }
+
+.links a img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+    filter: grayscale(1) brightness(1.15);
+}
