@@ -333,10 +333,10 @@ body {
 
 .links a img,
 .links img {
-  width: 34px !important;
-  height: 34px !important;
-  max-width: 34px !important;
-  max-height: 34px !important;
+  width: 42px !important;
+  height: 42px !important;
+  max-width: 42px !important;
+  max-height: 42px !important;
   object-fit: contain !important;
   display: block !important;
 }
