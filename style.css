@@ -99,21 +99,16 @@ body {
   filter: grayscale(1) contrast(1.25);
 }
 
-.decoration {
+.discord-decoration {
   position: absolute;
-  inset: -14px;
-  z-index: 1;
-  border-radius: 50%;
-  background:
-    repeating-conic-gradient(from 10deg, rgba(255,255,255,.95) 0 4deg, transparent 5deg 10deg);
-  clip-path: polygon(50% 0%, 57% 14%, 70% 5%, 72% 20%, 88% 17%, 80% 31%, 100% 41%, 82% 50%, 95% 67%, 76% 65%, 77% 85%, 61% 76%, 50% 100%, 39% 76%, 23% 85%, 24% 65%, 5% 67%, 18% 50%, 0% 41%, 20% 31%, 12% 17%, 28% 20%, 30% 5%, 43% 14%);
-  animation: twitch 1.9s steps(2) infinite;
-  filter: blur(.2px) drop-shadow(0 0 8px rgba(255,255,255,.25));
-}
-
-@keyframes twitch {
-  0%,100% { transform: rotate(0deg) scale(1); opacity: .9; }
-  50% { transform: rotate(4deg) scale(1.04); opacity: .72; }
+  width: 162px;
+  height: 162px;
+  top: -18px;
+  left: -18px;
+  z-index: 3;
+  pointer-events: none;
+  object-fit: contain;
+  filter: grayscale(1) contrast(1.08) drop-shadow(0 0 8px rgba(255,255,255,.18));
 }
 
 .name-block h1 {
@@ -122,7 +117,7 @@ body {
 
 .ghost-name {
   font-family: 'UnifrakturMaguntia', serif;
-  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-size: clamp(2.3rem, 6vw, 4rem);
   line-height: .9;
   color: white;
   text-transform: lowercase;
@@ -147,30 +142,33 @@ body {
   color: var(--soft);
 }
 
-.server-badge {
+.server-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   padding: 4px 8px;
   border: 1px solid var(--line);
   border-radius: 999px;
   color: var(--white);
   background: rgba(255,255,255,.06);
+  line-height: 1;
+}
+
+.server-tag img {
+  width: 18px;
+  height: 18px;
+  object-fit: contain;
+  border-radius: 4px;
+  filter: grayscale(1) contrast(1.15);
 }
 
 .center-line {
   text-align: center;
   margin: 32px 0 18px;
-  min-height: 1.7em;
   font-size: clamp(1rem, 3vw, 1.4rem);
   color: var(--white);
   text-shadow: 0 0 12px rgba(255,255,255,.24);
 }
-
-.typing-cursor {
-  display: inline-block;
-  margin-left: 3px;
-  animation: blink 1s infinite;
-}
-
-@keyframes blink { 50% { opacity: 0; } }
 
 .badges, .links {
   display: flex;
@@ -209,8 +207,7 @@ body {
   box-shadow: 0 0 18px rgba(255,255,255,.15);
 }
 
-.server-card,
-.music-player {
+.server-card, .music-player {
   display: flex;
   align-items: center;
   gap: 14px;
@@ -243,7 +240,6 @@ body {
   background: rgba(255,255,255,.08);
   border: 1px solid rgba(255,255,255,.22);
   border-radius: 12px;
-  font-family: "Share Tech Mono", monospace;
   font-weight: bold;
   letter-spacing: .12em;
   box-shadow: inset 0 0 18px rgba(255,255,255,.035);
@@ -265,16 +261,14 @@ body {
   margin-top: 16px;
 }
 
-.cover {
-  width: 68px;
-  height: 68px;
-  flex: 0 0 68px;
-  border-radius: 12px;
-  background-image: url("assets/model citizen art.jpg");
-  background-size: cover;
-  background-position: center;
-  filter: grayscale(1) contrast(1.25);
-  border: 1px solid rgba(255,255,255,.14);
+.cover-img {
+  width: 76px;
+  height: 76px;
+  border-radius: 14px;
+  object-fit: cover;
+  flex: 0 0 auto;
+  border: 1px solid rgba(255,255,255,.12);
+  filter: grayscale(1) contrast(1.22);
 }
 
 .track {
@@ -285,13 +279,6 @@ body {
 .track-title {
   margin-bottom: 10px;
   font-size: 1rem;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-.custom-player audio {
-  display: none;
 }
 
 .player-controls {
@@ -299,19 +286,28 @@ body {
   display: grid;
   grid-template-columns: auto auto auto auto 1fr auto;
   align-items: center;
-  gap: 9px;
+  gap: 8px;
+  padding: 10px 12px;
+  border-radius: 999px;
+  background: rgba(0,0,0,.72);
+  border: 1px solid rgba(255,255,255,.14);
+  box-shadow: inset 0 0 18px rgba(255,255,255,.035);
 }
 
 .player-btn {
-  min-width: 44px;
-  height: 34px;
-  padding: 0 10px;
+  width: 34px;
+  height: 30px;
+  padding: 0;
+  display: grid;
+  place-items: center;
   cursor: pointer;
-  font-size: .65rem;
+  font-family: "Share Tech Mono", monospace;
+  font-size: 1.05rem;
+  line-height: 1;
 }
 
-.main-play {
-  min-width: 56px;
+.play-main {
+  width: 40px;
 }
 
 .time {
@@ -319,7 +315,6 @@ body {
   font-size: .72rem;
   color: rgba(255,255,255,.74);
   letter-spacing: .04em;
-  text-align: center;
 }
 
 .progress {
@@ -351,71 +346,64 @@ body {
   cursor: pointer;
 }
 
+.typing-cursor {
+  display: inline-block;
+  margin-left: 3px;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
 @media (max-width: 560px) {
   .profile-card { padding: 22px 16px; border-radius: 22px; }
-  .top-row { justify-content: center; align-items: center; gap: 16px; }
+
+  .top-row {
+    justify-content: center;
+    align-items: center;
+    gap: 14px;
+  }
+
   .avatar-wrap { width: 96px; height: 96px; }
-  .ghost-name { font-size: clamp(2.2rem, 11vw, 3rem); }
+
+  .discord-decoration {
+    width: 124px;
+    height: 124px;
+    top: -14px;
+    left: -14px;
+  }
+
+  .ghost-name {
+    font-size: clamp(2rem, 12vw, 3rem);
+  }
+
   .server-card, .music-player { border-radius: 18px; }
   .join { padding: 11px 13px; }
 
-  .music-player {
-    align-items: flex-start;
-  }
-
-  .cover {
-    width: 58px;
-    height: 58px;
-    flex-basis: 58px;
+  .cover-img {
+    width: 64px;
+    height: 64px;
   }
 
   .player-controls {
-    grid-template-columns: auto auto auto;
-    gap: 7px;
+    grid-template-columns: auto auto auto auto 1fr auto;
+    gap: 6px;
+    padding: 9px 10px;
+  }
+
+  .player-btn {
+    width: 28px;
+    height: 28px;
+    font-size: .9rem;
+  }
+
+  .play-main {
+    width: 34px;
   }
 
   .time {
-    font-size: .65rem;
-    min-width: 32px;
+    min-width: 30px;
+    font-size: .62rem;
   }
-
-  .progress {
-    grid-column: 1 / -1;
-    order: 2;
-  }
-
-  #currentTime {
-    order: 3;
-  }
-
-  #duration {
-    order: 4;
-  }
-}
-
-
-.discord-decoration{
- position:absolute;
- width:165px;
- height:165px;
- top:-20px;
- left:-20px;
- z-index:3;
- pointer-events:none;
-}
-
-.server-badge-wrap{
- display:inline-flex;
- align-items:center;
- gap:6px;
-}
-
-.server-badge-img{
- height:24px;
- width:auto;
- object-fit:contain;
-}
-
-.server-badge-text{
- color:#fff;
 }

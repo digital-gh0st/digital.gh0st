@@ -6,15 +6,16 @@
 
   <title>ᴅɪɢɪᴛᴀʟ.ɢʜᴏsᴛ</title>
 
-  <link rel="icon" type="image/png" href="assets/header.png?v=4">
-  <link rel="shortcut icon" type="image/png" href="assets/header.png?v=4">
-  <link rel="apple-touch-icon" href="assets/header.png?v=4">
+  <link rel="icon" type="image/png" href="assets/header.png?v=3">
+  <link rel="shortcut icon" type="image/png" href="assets/header.png?v=3">
+  <link rel="apple-touch-icon" href="assets/header.png?v=3">
 
   <link rel="stylesheet" href="style.css" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Rubik+Glitch&family=Share+Tech+Mono&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+
   <script src="https://kit.fontawesome.com/4b9ba14b0f.js" crossorigin="anonymous"></script>
 </head>
 
@@ -25,7 +26,12 @@
     <section class="profile-card">
       <div class="top-row">
         <div class="avatar-wrap">
-          <img class="discord-decoration" src="https://cdn.discordapp.com/avatar-decoration-presets/a_a7e2ab61c12d84c8b538573f28d58ae0.png" alt="">
+          <img
+            class="discord-decoration"
+            src="https://cdn.discordapp.com/avatar-decoration-presets/a_a7e2ab61c12d84c8b538573f28d58ae0.png"
+            alt=""
+            aria-hidden="true"
+          />
           <img class="avatar" src="assets/avatar.jpg" alt="Discord profile picture" />
         </div>
 
@@ -33,7 +39,10 @@
           <h1 class="ghost-name">𝔤𝔥𝔬𝔰𝔱</h1>
           <div class="handle-row">
             <span>@digital.gh0st</span>
-            <span class="server-badge-wrap"><img class="server-badge-img" src="assets/server-tag.png" alt="server tag"><span class="server-badge-text">.ⅻⅰ.</span></span>
+            <span class="server-tag">
+              <img src="assets/servertag.png" alt="server tag" />
+              <span>.ⅻⅰ.</span>
+            </span>
           </div>
         </div>
       </div>
@@ -66,15 +75,15 @@
       </section>
 
       <section class="music-player custom-player">
-        <div class="cover" id="coverArt" aria-hidden="true"></div>
+        <img class="cover-img" id="coverArt" src="assets/model citizen art.jpg" alt="Album cover" />
 
         <div class="track">
           <div class="track-title" id="trackTitle">MODEL CITIZEN — MALE TEARS</div>
 
           <div class="player-controls">
-            <button class="player-btn" id="prevBtn" type="button" aria-label="Previous song">PREV</button>
-            <button class="player-btn main-play" id="playBtn" type="button" aria-label="Play music">PLAY</button>
-            <button class="player-btn" id="nextBtn" type="button" aria-label="Next song">NEXT</button>
+            <button class="player-btn" id="prevBtn" type="button" aria-label="Previous song">‹</button>
+            <button class="player-btn play-main" id="playBtn" type="button" aria-label="Play music">▶</button>
+            <button class="player-btn" id="nextBtn" type="button" aria-label="Next song">›</button>
 
             <span class="time" id="currentTime">0:00</span>
 
@@ -158,14 +167,14 @@
     ];
 
     const song = document.getElementById("song");
-    const coverArt = document.getElementById("coverArt");
-    const trackTitle = document.getElementById("trackTitle");
     const playBtn = document.getElementById("playBtn");
     const prevBtn = document.getElementById("prevBtn");
     const nextBtn = document.getElementById("nextBtn");
     const progressBar = document.getElementById("progressBar");
     const currentTimeEl = document.getElementById("currentTime");
     const durationEl = document.getElementById("duration");
+    const trackTitle = document.getElementById("trackTitle");
+    const coverArt = document.getElementById("coverArt");
 
     let currentTrack = 0;
 
@@ -180,42 +189,39 @@
       const track = playlist[index];
       song.src = track.file;
       trackTitle.textContent = track.title;
-      coverArt.style.backgroundImage = `url("${track.cover}")`;
+      coverArt.src = track.cover;
+      coverArt.alt = `${track.title} cover`;
       progressBar.value = 0;
       progressBar.style.setProperty("--progress", "0%");
       currentTimeEl.textContent = "0:00";
       durationEl.textContent = "0:00";
-      playBtn.textContent = "PLAY";
+      playBtn.textContent = "▶";
     }
 
-    function playCurrentTrack() {
+    function playCurrent() {
       song.play();
-      playBtn.textContent = "PAUSE";
-    }
-
-    function pauseCurrentTrack() {
-      song.pause();
-      playBtn.textContent = "PLAY";
+      playBtn.textContent = "❚❚";
     }
 
     playBtn.addEventListener("click", () => {
       if (song.paused) {
-        playCurrentTrack();
+        playCurrent();
       } else {
-        pauseCurrentTrack();
+        song.pause();
+        playBtn.textContent = "▶";
       }
-    });
-
-    prevBtn.addEventListener("click", () => {
-      currentTrack = (currentTrack - 1 + playlist.length) % playlist.length;
-      loadTrack(currentTrack);
-      playCurrentTrack();
     });
 
     nextBtn.addEventListener("click", () => {
       currentTrack = (currentTrack + 1) % playlist.length;
       loadTrack(currentTrack);
-      playCurrentTrack();
+      playCurrent();
+    });
+
+    prevBtn.addEventListener("click", () => {
+      currentTrack = (currentTrack - 1 + playlist.length) % playlist.length;
+      loadTrack(currentTrack);
+      playCurrent();
     });
 
     song.addEventListener("loadedmetadata", () => {
@@ -230,19 +236,18 @@
     });
 
     progressBar.addEventListener("input", () => {
-      if (Number.isFinite(song.duration)) {
-        song.currentTime = (progressBar.value / 100) * song.duration;
-        progressBar.style.setProperty("--progress", `${progressBar.value}%`);
-      }
+      if (!Number.isFinite(song.duration)) return;
+      song.currentTime = (progressBar.value / 100) * song.duration;
+      progressBar.style.setProperty("--progress", `${progressBar.value}%`);
     });
 
     song.addEventListener("ended", () => {
       currentTrack = (currentTrack + 1) % playlist.length;
       loadTrack(currentTrack);
-      playCurrentTrack();
+      playCurrent();
     });
 
-    loadTrack(currentTrack);
+    loadTrack(0);
   </script>
 </body>
 </html>
