@@ -335,3 +335,11 @@ body {
     width: 45px !important;
     height: 45px !important;
 }
+
+.section-divider-text {
+    text-align: center;
+    margin: 16px 0;
+    color: rgba(255,255,255,.35);
+    font-size: .8rem;
+    letter-spacing: .3em;
+}
