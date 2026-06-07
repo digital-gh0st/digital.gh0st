@@ -83,10 +83,9 @@ body {
 }
 
 .avatar-wrap {
-  position: relative;
-  width: 118px;
-  height: 118px;
-  flex: 0 0 auto;
+    width: 145px;
+    height: 145px;
+    flex: 0 0 auto;
 }
 
 .avatar {
