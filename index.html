@@ -4,16 +4,22 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>digital-gh0st</title>
+
   <link rel="stylesheet" href="style.css" />
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Rubik+Glitch&family=Share+Tech+Mono&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+
   <script src="https://kit.fontawesome.com/4b9ba14b0f.js" crossorigin="anonymous"></script>
 </head>
+
 <body>
   <div class="bg"></div>
+
   <main class="page">
     <section class="profile-card">
+
       <div class="top-row">
         <div class="avatar-wrap">
           <div class="decoration"></div>
@@ -22,9 +28,10 @@
         </div>
 
         <div class="name-block">
-          <h1>𝔤𝔥𝔬𝔰𝔱</h1>
+          <canvas id="ghostName" width="240" height="80" aria-label="gh0st"></canvas>
+
           <div class="handle-row">
-            <span>@digital.ghost</span>
+            <span>@digital.gh0st</span>
             <span class="server-badge">.XIII.</span>
           </div>
         </div>
@@ -66,7 +73,38 @@
           </audio>
         </div>
       </section>
+
     </section>
   </main>
+
+  <script>
+    const canvas = document.getElementById("ghostName");
+    const ctx = canvas.getContext("2d");
+
+    function drawFuzzyName() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      const text = "𝔤𝔥𝔬𝔰𝔱";
+
+      ctx.textBaseline = "middle";
+      ctx.font = "52px UnifrakturMaguntia, serif";
+      ctx.fillStyle = "#ffffff";
+
+      for (let i = 0; i < 9; i++) {
+        ctx.globalAlpha = 0.18;
+        ctx.fillText(
+          text,
+          8 + (Math.random() * 3 - 1.5),
+          42 + (Math.random() * 3 - 1.5)
+        );
+      }
+
+      ctx.globalAlpha = 1;
+      ctx.fillText(text, 8, 42);
+    }
+
+    drawFuzzyName();
+    setInterval(drawFuzzyName, 120);
+  </script>
 </body>
 </html>
