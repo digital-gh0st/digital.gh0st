@@ -3,8 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>digital-gh0st</title>
-  <link rel="icon" type="image/png" href="assets/header.png">
+
+  <title>𝔤𝔥𝔬𝔰𝔱</title>
+
+  <!-- Bat tab icon -->
+  <link rel="icon" type="image/png" href="assets/header.png?v=2">
+  <link rel="shortcut icon" type="image/png" href="assets/header.png?v=2">
+  <link rel="apple-touch-icon" href="assets/header.png?v=2">
 
   <link rel="stylesheet" href="style.css" />
 
@@ -20,7 +25,6 @@
 
   <main class="page">
     <section class="profile-card">
-
       <div class="top-row">
         <div class="avatar-wrap">
           <div class="decoration"></div>
@@ -29,8 +33,7 @@
         </div>
 
         <div class="name-block">
-          <canvas id="ghostName" width="240" height="80" aria-label="gh0st"></canvas>
-
+          <h1>𝔤𝔥𝔬𝔰𝔱</h1>
           <div class="handle-row">
             <span>@digital.gh0st</span>
             <span class="server-badge">.XIII.</span>
@@ -38,7 +41,9 @@
         </div>
       </div>
 
-      <p class="center-line">WIFE · MOTHER · SPOOKY</p>
+      <p class="center-line">
+        <span id="typingLine"></span><span class="typing-cursor">|</span>
+      </p>
 
       <div class="badges">
         <span>SHE/HER</span>
@@ -74,38 +79,41 @@
           </audio>
         </div>
       </section>
-
     </section>
   </main>
 
   <script>
-    const canvas = document.getElementById("ghostName");
-    const ctx = canvas.getContext("2d");
+    const text = "WIFE · MOTHER · SPOOKY";
+    const target = document.getElementById("typingLine");
 
-    function drawFuzzyName() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+    let i = 0;
+    let deleting = false;
 
-      const text = "𝔤𝔥𝔬𝔰𝔱";
+    function typeLoop() {
+      if (!deleting) {
+        target.textContent = text.substring(0, i);
+        i++;
 
-      ctx.textBaseline = "middle";
-      ctx.font = "52px UnifrakturMaguntia, serif";
-      ctx.fillStyle = "#ffffff";
+        if (i > text.length) {
+          deleting = true;
+          setTimeout(typeLoop, 2000);
+          return;
+        }
+      } else {
+        target.textContent = text.substring(0, i);
+        i--;
 
-      for (let i = 0; i < 9; i++) {
-        ctx.globalAlpha = 0.18;
-        ctx.fillText(
-          text,
-          8 + (Math.random() * 3 - 1.5),
-          42 + (Math.random() * 3 - 1.5)
-        );
+        if (i < 0) {
+          deleting = false;
+          setTimeout(typeLoop, 400);
+          return;
+        }
       }
 
-      ctx.globalAlpha = 1;
-      ctx.fillText(text, 8, 42);
+      setTimeout(typeLoop, deleting ? 45 : 100);
     }
 
-    drawFuzzyName();
-    setInterval(drawFuzzyName, 120);
+    typeLoop();
   </script>
 </body>
 </html>
