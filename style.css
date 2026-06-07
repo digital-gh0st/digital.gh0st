@@ -338,8 +338,6 @@ body {
 
 .section-divider-text {
     text-align: center;
-    margin: 16px 0;
     color: rgba(255,255,255,.35);
-    font-size: .8rem;
-    letter-spacing: .3em;
+    margin: 24px 0 18px;
 }
