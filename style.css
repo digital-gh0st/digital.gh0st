@@ -336,8 +336,13 @@ body {
     height: 45px !important;
 }
 
-.section-divider-text {
+.divider-image {
     text-align: center;
-    color: rgba(255,255,255,.35);
     margin: 24px 0 18px;
+}
+
+.divider-image img {
+    width: 120px;
+    height: auto;
+    opacity: .8;
 }
