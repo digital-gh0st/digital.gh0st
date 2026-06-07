@@ -297,9 +297,9 @@ body {
   line-height: 1;
 }
 
-.player-btn.play {
-  font-size: .9rem;
-  padding-left: 2px;
+.player-btn.play i {
+  position: relative;
+  left: 1px;
 }
 
 .time {
