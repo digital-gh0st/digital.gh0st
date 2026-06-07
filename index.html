@@ -6,10 +6,9 @@
 
   <title>ᴅɪɢɪᴛᴀʟ.ɢʜᴏsᴛ</title>
 
-  <!-- Bat tab icon -->
-  <link rel="icon" type="image/png" href="assets/header.png?v=2">
-  <link rel="shortcut icon" type="image/png" href="assets/header.png?v=2">
-  <link rel="apple-touch-icon" href="assets/header.png?v=2">
+  <link rel="icon" type="image/png" href="assets/header.png?v=4">
+  <link rel="shortcut icon" type="image/png" href="assets/header.png?v=4">
+  <link rel="apple-touch-icon" href="assets/header.png?v=4">
 
   <link rel="stylesheet" href="style.css" />
 
@@ -33,7 +32,7 @@
         </div>
 
         <div class="name-block">
-         <h1 class="ghost-name">𝔤𝔥𝔬𝔰𝔱</h1>
+          <h1 class="ghost-name" data-text="gh0st">gh0st</h1>
           <div class="handle-row">
             <span>@digital.gh0st</span>
             <span class="server-badge">.XIII.</span>
@@ -53,20 +52,20 @@
       </div>
 
       <nav class="links" aria-label="social links">
-        <a href="https://steamcommunity.com/" aria-label="Steam"><i class="fa-brands fa-steam"></i></a>
-        <a href="https://open.spotify.com/" aria-label="Spotify"><i class="fa-brands fa-spotify"></i></a>
-        <a href="https://x.com/" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
-        <a href="https://discord.gg/" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
-        <a href="https://throne.com/" aria-label="Throne"><i class="fa-solid fa-crown"></i></a>
+        <a href="https://steamcommunity.com/" aria-label="Steam" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-steam"></i></a>
+        <a href="https://open.spotify.com/" aria-label="Spotify" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-spotify"></i></a>
+        <a href="https://x.com/" aria-label="X" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://discord.gg/thirteen-xiii" aria-label="Discord" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-discord"></i></a>
+        <a href="https://throne.com/" aria-label="Throne" target="_blank" rel="noopener noreferrer"><i class="fa-solid fa-crown"></i></a>
       </nav>
 
       <section class="server-card">
         <img src="assets/XIII.gif" alt="XIII server icon" />
         <div class="server-info">
           <h2>.XIII. <span>21+</span></h2>
-          <p><span class="online"></span>49 ONLINE <span class="divider"></span> 233 MEMBERS</p>
+          <p><span class="online"></span>49 ONLINE <span class="divider"></span>233 MEMBERS</p>
         </div>
-        <a class="join" href="https://discord.gg/thirteen-xiii">JOIN</a>
+        <a class="join" href="https://discord.gg/thirteen-xiii" target="_blank" rel="noopener noreferrer">JOIN</a>
       </section>
 
       <section class="music-player">
@@ -82,46 +81,46 @@
     </section>
   </main>
 
-<script>
-  const phrases = [
-    "WIFE · MOTHER · SPOOKY",
-    "ARCHIVING THE STRANGE"
-  ];
+  <script>
+    const phrases = [
+      "WIFE · MOTHER · SPOOKY",
+      "ARCHIVING THE STRANGE"
+    ];
 
-  const target = document.getElementById("typingLine");
+    const target = document.getElementById("typingLine");
 
-  let phraseIndex = 0;
-  let charIndex = 0;
-  let deleting = false;
+    let phraseIndex = 0;
+    let charIndex = 0;
+    let deleting = false;
 
-  function typeLoop() {
-    const currentPhrase = phrases[phraseIndex];
+    function typeLoop() {
+      const currentPhrase = phrases[phraseIndex];
 
-    if (!deleting) {
-      target.textContent = currentPhrase.substring(0, charIndex);
-      charIndex++;
+      if (!deleting) {
+        target.textContent = currentPhrase.substring(0, charIndex);
+        charIndex++;
 
-      if (charIndex > currentPhrase.length) {
-        deleting = true;
-        setTimeout(typeLoop, 2000);
-        return;
+        if (charIndex > currentPhrase.length) {
+          deleting = true;
+          setTimeout(typeLoop, 2000);
+          return;
+        }
+      } else {
+        target.textContent = currentPhrase.substring(0, charIndex);
+        charIndex--;
+
+        if (charIndex < 0) {
+          deleting = false;
+          phraseIndex = (phraseIndex + 1) % phrases.length;
+          setTimeout(typeLoop, 400);
+          return;
+        }
       }
-    } else {
-      target.textContent = currentPhrase.substring(0, charIndex);
-      charIndex--;
 
-      if (charIndex < 0) {
-        deleting = false;
-        phraseIndex = (phraseIndex + 1) % phrases.length;
-        setTimeout(typeLoop, 400);
-        return;
-      }
+      setTimeout(typeLoop, deleting ? 45 : 100);
     }
 
-    setTimeout(typeLoop, deleting ? 45 : 100);
-  }
-
-  typeLoop();
-</script>
+    typeLoop();
+  </script>
 </body>
 </html>
