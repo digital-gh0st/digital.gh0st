@@ -341,8 +341,13 @@ body {
     margin: 24px 0 18px;
 }
 
+.divider-image {
+    text-align: center;
+    margin: 24px 0;
+}
+
 .divider-image img {
-    width: 150px;
+    width: min(260px, 70%);
     height: auto;
-    opacity: .75;
+    opacity: .8;
 }
