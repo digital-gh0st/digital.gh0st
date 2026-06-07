@@ -89,14 +89,14 @@ body {
 }
 
 .avatar {
-  position: absolute;
-  inset: -12px;
-width: calc(100% + 24px);
-height: calc(100% + 24px);
-  object-fit: cover;
-  border-radius: 50%;
-  z-index: 2;
-  filter: grayscale(1) contrast(1.25);
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    z-index: 2;
+    filter: grayscale(1) contrast(1.25);
 }
 
 .discord-decoration {
