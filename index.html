@@ -15,9 +15,9 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Rubik+Glitch&family=Share+Tech+Mono&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
-
   <script src="https://kit.fontawesome.com/4b9ba14b0f.js" crossorigin="anonymous"></script>
 </head>
+
 <body>
   <div class="bg"></div>
 
@@ -25,7 +25,7 @@
     <section class="profile-card">
       <div class="top-row">
         <div class="avatar-wrap">
-          <div class="decoration"></div>
+          <img class="discord-decoration" src="https://cdn.discordapp.com/avatar-decoration-presets/a_a7e2ab61c12d84c8b538573f28d58ae0.png" alt="">
           <img class="avatar" src="assets/avatar.jpg" alt="Discord profile picture" />
         </div>
 
@@ -33,7 +33,7 @@
           <h1 class="ghost-name">𝔤𝔥𝔬𝔰𝔱</h1>
           <div class="handle-row">
             <span>@digital.gh0st</span>
-            <span class="server-badge">.XIII.</span>
+            <span class="server-badge-wrap"><img class="server-badge-img" src="assets/server-tag.png" alt="server tag"><span class="server-badge-text">.ⅻⅰ.</span></span>
           </div>
         </div>
       </div>
@@ -49,11 +49,11 @@
       </div>
 
       <nav class="links" aria-label="social links">
-        <a href="https://steamcommunity.com/" target="_blank" rel="noopener noreferrer" aria-label="Steam"><i class="fa-brands fa-steam"></i></a>
-        <a href="https://open.spotify.com/" target="_blank" rel="noopener noreferrer" aria-label="Spotify"><i class="fa-brands fa-spotify"></i></a>
-        <a href="https://x.com/" target="_blank" rel="noopener noreferrer" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
-        <a href="https://discord.gg/thirteen-xiii" target="_blank" rel="noopener noreferrer" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
-        <a href="https://throne.com/" target="_blank" rel="noopener noreferrer" aria-label="Throne"><i class="fa-solid fa-crown"></i></a>
+        <a href="https://steamcommunity.com/" aria-label="Steam"><i class="fa-brands fa-steam"></i></a>
+        <a href="https://open.spotify.com/" aria-label="Spotify"><i class="fa-brands fa-spotify"></i></a>
+        <a href="https://x.com/" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="https://discord.gg/thirteen-xiii" aria-label="Discord"><i class="fa-brands fa-discord"></i></a>
+        <a href="https://throne.com/" aria-label="Throne"><i class="fa-solid fa-crown"></i></a>
       </nav>
 
       <section class="server-card">
@@ -72,12 +72,22 @@
           <div class="track-title" id="trackTitle">MODEL CITIZEN — MALE TEARS</div>
 
           <div class="player-controls">
-            <button class="player-btn" id="prevBtn" type="button" aria-label="Previous song">‹‹</button>
-            <button class="player-btn main-play" id="playBtn" type="button" aria-label="Play music">▶</button>
-            <button class="player-btn" id="nextBtn" type="button" aria-label="Next song">››</button>
+            <button class="player-btn" id="prevBtn" type="button" aria-label="Previous song">PREV</button>
+            <button class="player-btn main-play" id="playBtn" type="button" aria-label="Play music">PLAY</button>
+            <button class="player-btn" id="nextBtn" type="button" aria-label="Next song">NEXT</button>
 
             <span class="time" id="currentTime">0:00</span>
-            <input class="progress" id="progressBar" type="range" min="0" max="100" value="0" aria-label="Song progress" />
+
+            <input
+              class="progress"
+              id="progressBar"
+              type="range"
+              min="0"
+              max="100"
+              value="0"
+              aria-label="Song progress"
+            />
+
             <span class="time" id="duration">0:00</span>
           </div>
 
@@ -93,7 +103,7 @@
       "ARCHIVING THE STRANGE"
     ];
 
-    const target = document.getElementById("typingLine");
+    const typingTarget = document.getElementById("typingLine");
     let phraseIndex = 0;
     let charIndex = 0;
     let deleting = false;
@@ -102,7 +112,7 @@
       const currentPhrase = phrases[phraseIndex];
 
       if (!deleting) {
-        target.textContent = currentPhrase.substring(0, charIndex);
+        typingTarget.textContent = currentPhrase.substring(0, charIndex);
         charIndex++;
 
         if (charIndex > currentPhrase.length) {
@@ -111,7 +121,7 @@
           return;
         }
       } else {
-        target.textContent = currentPhrase.substring(0, charIndex);
+        typingTarget.textContent = currentPhrase.substring(0, charIndex);
         charIndex--;
 
         if (charIndex < 0) {
@@ -148,14 +158,14 @@
     ];
 
     const song = document.getElementById("song");
+    const coverArt = document.getElementById("coverArt");
+    const trackTitle = document.getElementById("trackTitle");
     const playBtn = document.getElementById("playBtn");
-    const nextBtn = document.getElementById("nextBtn");
     const prevBtn = document.getElementById("prevBtn");
+    const nextBtn = document.getElementById("nextBtn");
     const progressBar = document.getElementById("progressBar");
     const currentTimeEl = document.getElementById("currentTime");
     const durationEl = document.getElementById("duration");
-    const trackTitle = document.getElementById("trackTitle");
-    const coverArt = document.getElementById("coverArt");
 
     let currentTrack = 0;
 
@@ -166,39 +176,46 @@
       return `${mins}:${secs}`;
     }
 
-    function loadTrack(index, autoplay = false) {
-      currentTrack = index;
-      song.src = playlist[currentTrack].file;
-      trackTitle.textContent = playlist[currentTrack].title;
-      coverArt.style.backgroundImage = `url('${playlist[currentTrack].cover}')`;
+    function loadTrack(index) {
+      const track = playlist[index];
+      song.src = track.file;
+      trackTitle.textContent = track.title;
+      coverArt.style.backgroundImage = `url("${track.cover}")`;
       progressBar.value = 0;
       progressBar.style.setProperty("--progress", "0%");
       currentTimeEl.textContent = "0:00";
       durationEl.textContent = "0:00";
-      playBtn.textContent = "▶";
+      playBtn.textContent = "PLAY";
+    }
 
-      if (autoplay) {
-        song.play();
-        playBtn.textContent = "❚❚";
-      }
+    function playCurrentTrack() {
+      song.play();
+      playBtn.textContent = "PAUSE";
+    }
+
+    function pauseCurrentTrack() {
+      song.pause();
+      playBtn.textContent = "PLAY";
     }
 
     playBtn.addEventListener("click", () => {
       if (song.paused) {
-        song.play();
-        playBtn.textContent = "❚❚";
+        playCurrentTrack();
       } else {
-        song.pause();
-        playBtn.textContent = "▶";
+        pauseCurrentTrack();
       }
     });
 
-    nextBtn.addEventListener("click", () => {
-      loadTrack((currentTrack + 1) % playlist.length, true);
+    prevBtn.addEventListener("click", () => {
+      currentTrack = (currentTrack - 1 + playlist.length) % playlist.length;
+      loadTrack(currentTrack);
+      playCurrentTrack();
     });
 
-    prevBtn.addEventListener("click", () => {
-      loadTrack((currentTrack - 1 + playlist.length) % playlist.length, true);
+    nextBtn.addEventListener("click", () => {
+      currentTrack = (currentTrack + 1) % playlist.length;
+      loadTrack(currentTrack);
+      playCurrentTrack();
     });
 
     song.addEventListener("loadedmetadata", () => {
@@ -213,16 +230,19 @@
     });
 
     progressBar.addEventListener("input", () => {
-      if (!song.duration) return;
-      song.currentTime = (progressBar.value / 100) * song.duration;
-      progressBar.style.setProperty("--progress", `${progressBar.value}%`);
+      if (Number.isFinite(song.duration)) {
+        song.currentTime = (progressBar.value / 100) * song.duration;
+        progressBar.style.setProperty("--progress", `${progressBar.value}%`);
+      }
     });
 
     song.addEventListener("ended", () => {
-      loadTrack((currentTrack + 1) % playlist.length, true);
+      currentTrack = (currentTrack + 1) % playlist.length;
+      loadTrack(currentTrack);
+      playCurrentTrack();
     });
 
-    loadTrack(0);
+    loadTrack(currentTrack);
   </script>
 </body>
 </html>
