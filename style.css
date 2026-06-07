@@ -299,7 +299,7 @@ body {
 
 .player-btn.play i {
   position: relative;
-  left: 1px;
+  left: 0;
 }
 
 .time {
