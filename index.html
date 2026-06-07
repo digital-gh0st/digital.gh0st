@@ -58,7 +58,12 @@
         <img src="assets/XIII.gif" alt="XIII server icon" />
         <div class="server-info">
           <h2>.XIII. <span>21+</span></h2>
-          <p><span class="online"></span>49 ONLINE <span class="divider"></span> 233 MEMBERS</p>
+          <p>
+  <span class="online"></span>
+  <span id="onlineCount">--</span> ONLINE
+  <span class="divider"></span>
+  <span id="memberCount">--</span> MEMBERS
+</p>
         </div>
         <a class="join" href="https://discord.gg/thirteen-xiii" target="_blank" rel="noopener noreferrer">JOIN</a>
       </section>
@@ -215,5 +220,29 @@
 
     loadTrack(currentTrack);
   </script>
+
+  <script>
+async function updateDiscordStats() {
+  try {
+    const response = await fetch(
+      "https://discord.com/api/v9/invites/thirteen-xiii?with_counts=true"
+    );
+
+    const data = await response.json();
+
+    document.getElementById("onlineCount").textContent =
+      data.approximate_presence_count || "--";
+
+    document.getElementById("memberCount").textContent =
+      data.approximate_member_count || "--";
+
+  } catch (err) {
+    console.error("Discord stats failed:", err);
+  }
+}
+
+updateDiscordStats();
+setInterval(updateDiscordStats, 60000);
+</script>
 </body>
 </html>
