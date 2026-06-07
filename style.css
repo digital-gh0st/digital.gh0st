@@ -331,12 +331,7 @@ body {
   .time { font-size: .7rem; }
 }
 
-.links a img,
-.links img {
-  width: 42px !important;
-  height: 42px !important;
-  max-width: 42px !important;
-  max-height: 42px !important;
-  object-fit: contain !important;
-  display: block !important;
+.links a img {
+    width: 60px !important;
+    height: 60px !important;
 }
