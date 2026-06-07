@@ -299,6 +299,7 @@ body {
 
 .player-btn.play {
   font-size: .9rem;
+  padding-left: 2px;
 }
 
 .time {
