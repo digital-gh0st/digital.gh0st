@@ -386,3 +386,15 @@ body {
   }
 }
 
+.name-line {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 10px !important;
+  flex-wrap: nowrap !important;
+}
+
+.name-line .ghost-name {
+  margin: 0 !important;
+}
+
