@@ -364,38 +364,4 @@ body {
   margin: 0 !important;
 }
 
-.profile-card {
-  overflow: hidden;
-}
 
-.top-row {
-  flex-wrap: wrap;
-}
-
-.name-block {
-  min-width: 0;
-}
-
-.links {
-  flex-direction: row;
-}
-
-@media (max-width: 560px) {
-  .top-row {
-    justify-content: center;
-    text-align: center;
-  }
-
-  .handle-row {
-    justify-content: center;
-  }
-
-  .badges {
-    justify-content: center;
-  }
-
-  .server-card,
-  .music-player {
-    max-width: 100%;
-  }
-}
