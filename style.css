@@ -352,15 +352,6 @@ body {
     opacity: .8;
 }
 
-
-@media (min-width: 561px) {
-  .top-row {
-    flex-wrap: nowrap;
-    justify-content: center;
-  }
-
-  .name-block {
-    display: flex;
     flex-direction: column;
     align-items: flex-start;
   }
@@ -436,5 +427,59 @@ body {
   .name-badge {
     transform: scale(.75);
     transform-origin: left center;
+  }
+}
+
+/* FINAL HEADER FIX */
+
+.name-block {
+  min-width: 0;
+}
+
+.name-line {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+  flex-wrap: nowrap;
+}
+
+.name-badge {
+  transform: scale(.8);
+  transform-origin: left center;
+  flex: 0 0 auto;
+}
+
+.handle-row {
+  justify-content: flex-start;
+}
+
+@media (max-width: 560px) {
+  .top-row {
+    flex-direction: column;
+    text-align: center;
+    gap: 14px;
+  }
+
+  .name-line {
+    justify-content: center;
+  }
+
+  .handle-row {
+    justify-content: center;
+  }
+
+  .name-badge {
+    transform: scale(.7);
+  }
+}
+
+@media (min-width: 561px) {
+  .top-row {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: nowrap;
+    gap: 22px;
   }
 }
