@@ -398,3 +398,43 @@ body {
   margin: 0 !important;
 }
 
+.top-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: nowrap;
+  gap: 22px;
+}
+
+.name-block {
+  display: block;
+  min-width: 0;
+}
+
+.name-line {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: nowrap;
+  gap: 10px;
+}
+
+.handle-row {
+  justify-content: flex-start;
+}
+
+@media (max-width: 560px) {
+  .top-row {
+    flex-wrap: nowrap;
+    gap: 14px;
+  }
+
+  .name-line {
+    justify-content: flex-start;
+  }
+
+  .name-badge {
+    transform: scale(.75);
+    transform-origin: left center;
+  }
+}
