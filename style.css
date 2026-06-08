@@ -351,3 +351,21 @@ body {
     height: auto;
     opacity: .8;
 }
+
+.name-line {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 10px !important;
+  flex-wrap: nowrap !important;
+}
+
+.name-line .ghost-name {
+  margin: 0 !important;
+}
+
+.name-badge {
+  flex: 0 0 auto !important;
+  transform: scale(.78) !important;
+  transform-origin: left center !important;
+}
