@@ -363,9 +363,3 @@ body {
 .name-line .ghost-name {
   margin: 0 !important;
 }
-
-.name-badge {
-  flex: 0 0 auto !important;
-  transform: scale(.78) !important;
-  transform-origin: left center !important;
-}
