@@ -400,3 +400,32 @@ body {
     transform: scale(.7);
   }
 }
+
+@media (min-width: 561px) {
+  .top-row {
+    display: flex;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: center !important;
+    flex-wrap: nowrap !important;
+    gap: 22px !important;
+    text-align: left !important;
+  }
+
+  .name-block {
+    display: block !important;
+    text-align: left !important;
+  }
+
+  .name-line {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    flex-wrap: nowrap !important;
+  }
+
+  .handle-row {
+    justify-content: flex-start !important;
+  }
+}
