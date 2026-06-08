@@ -272,5 +272,49 @@ async function updateDiscordStats() {
 updateDiscordStats();
 setInterval(updateDiscordStats, 60000);
 </script>
+
+  <script>
+const glitchChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&";
+const badgeEls = document.querySelectorAll(".badges span");
+
+badgeEls.forEach((badge) => {
+  badge.dataset.original = badge.textContent;
+});
+
+function glitchAllBadges() {
+  let frame = 0;
+  const maxFrames = 10;
+
+  const interval = setInterval(() => {
+    badgeEls.forEach((badge) => {
+      const original = badge.dataset.original;
+
+      badge.textContent = original
+        .split("")
+        .map((char) => {
+          if (char === " " || char === "/" || char === "+") return char;
+
+          return Math.random() > 0.45
+            ? glitchChars[Math.floor(Math.random() * glitchChars.length)]
+            : char;
+        })
+        .join("");
+    });
+
+    frame++;
+
+    if (frame >= maxFrames) {
+      clearInterval(interval);
+
+      badgeEls.forEach((badge) => {
+        badge.textContent = badge.dataset.original;
+      });
+    }
+  }, 45);
+}
+
+setInterval(glitchAllBadges, 2200);
+</script>
+  
 </body>
 </html>
