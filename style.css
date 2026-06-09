@@ -189,7 +189,7 @@ body {
 .divider-image img {
   width: min(260px, 70%);
   height: auto;
-  opacity: .18;
+  opacity: .15;
   filter: blur(1px);
 }
 
