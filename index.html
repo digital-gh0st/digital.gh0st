@@ -157,7 +157,8 @@
   </script>
 
   <script>
-    const glitchChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&";
+    const glitchChars =
+"ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&!?/*+-";
     const badgeEls = document.querySelectorAll(".badges span");
 
     badgeEls.forEach((badge) => {
@@ -175,7 +176,7 @@
           badge.textContent = original
             .split("")
             .map((char) => {
-              if (char === " " || char === "/" || char === "+") return char;
+              if (char === " ") return char;
               return Math.random() > 0.45
                 ? glitchChars[Math.floor(Math.random() * glitchChars.length)]
                 : char;
