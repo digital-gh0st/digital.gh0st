@@ -359,7 +359,7 @@ body {
     align-items: center;
     justify-content: center;
     text-align: left;
-    gap: 12px;
+    gap: 4px;
     margin-bottom: 24px;
   }
 
@@ -374,7 +374,7 @@ body {
   }
 
   .ghost-name {
-    font-size: 2.6rem;
+    font-size: 2.3rem;
   }
 
   .handle-row {
