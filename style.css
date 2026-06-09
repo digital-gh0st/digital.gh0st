@@ -212,6 +212,7 @@ body {
 }
 
 .links a:hover {
+  opacity: 1;
   transform: translateY(-3px);
   background: rgba(255,255,255,.13);
   box-shadow: 0 0 18px rgba(255,255,255,.15);
@@ -220,6 +221,8 @@ body {
 .links a img {
   width: 45px;
   height: 45px;
+  opacity: .75;
+  transition: opacity .2s ease;
   object-fit: contain;
   display: block;
 }
