@@ -187,7 +187,7 @@ body {
 }
 
 .divider-image img {
-  width: min(120px, 38%);
+  width: min(100px, 38%);
   height: auto;
   opacity: .8;
 }
