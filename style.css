@@ -187,7 +187,7 @@ body {
 }
 
 .divider-image img {
-  width: min(100px, 38%);
+  width: min(260px, 70%);
   height: auto;
   opacity: .8;
 }
@@ -374,7 +374,7 @@ body {
   }
 
   .ghost-name {
-    font-size: 2rem;
+    font-size: 2.8rem;
   }
 
   .handle-row {
