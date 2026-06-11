@@ -316,11 +316,9 @@ body {
 }
 
 .player-controls {
-  width: 100%;
-  display: grid;
-  grid-template-columns: 34px 34px 34px auto minmax(90px, 1fr) auto;
+  display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
 }
 
 .player-btn {
