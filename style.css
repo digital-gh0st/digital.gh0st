@@ -421,32 +421,77 @@ body {
   .time { font-size: .7rem; }
 }
 
-.profile-card.glitching {
-  animation: cardGlitch .45s steps(2, end);
-}
-
 .profile-card.glitching::before {
   content: "";
   position: absolute;
   inset: 0;
+  z-index: 30;
+  pointer-events: none;
+  opacity: .95;
   background:
     repeating-linear-gradient(
       to bottom,
-      rgba(255,255,255,.12) 0px,
-      rgba(255,255,255,.12) 1px,
-      transparent 2px,
-      transparent 5px
+      rgba(255,255,255,.9) 0px,
+      rgba(255,255,255,.9) 2px,
+      transparent 3px,
+      transparent 7px
+    ),
+    repeating-linear-gradient(
+      to right,
+      rgba(255,255,255,.18) 0px,
+      rgba(255,255,255,.18) 8px,
+      transparent 9px,
+      transparent 18px
     );
-  mix-blend-mode: overlay;
-  pointer-events: none;
-  z-index: 10;
+  mix-blend-mode: difference;
+  animation: fullStaticGlitch .38s steps(2, end);
 }
 
-@keyframes cardGlitch {
-  0% { transform: translate(0); filter: grayscale(1) contrast(1.1); }
-  20% { transform: translate(-3px, 2px); filter: grayscale(1) contrast(1.8); }
-  40% { transform: translate(3px, -1px); filter: grayscale(1) contrast(2.2); }
-  60% { transform: translate(-2px, 1px); filter: grayscale(1) contrast(1.6); }
-  80% { transform: translate(2px, -2px); filter: grayscale(1) contrast(2); }
-  100% { transform: translate(0); filter: grayscale(1) contrast(1); }
+.profile-card.glitching {
+  animation: cardWarp .38s steps(2, end);
+}
+
+@keyframes fullStaticGlitch {
+  0% {
+    transform: translateX(0);
+    clip-path: inset(0 0 0 0);
+  }
+  20% {
+    transform: translateX(-14px);
+    clip-path: inset(8% 0 72% 0);
+  }
+  40% {
+    transform: translateX(18px);
+    clip-path: inset(30% 0 44% 0);
+  }
+  60% {
+    transform: translateX(-22px);
+    clip-path: inset(55% 0 18% 0);
+  }
+  80% {
+    transform: translateX(12px);
+    clip-path: inset(70% 0 5% 0);
+  }
+  100% {
+    transform: translateX(0);
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes cardWarp {
+  0% {
+    filter: grayscale(1) contrast(1);
+  }
+  30% {
+    filter: grayscale(1) contrast(3) brightness(1.4);
+    transform: skewX(-2deg);
+  }
+  60% {
+    filter: grayscale(1) contrast(4) brightness(.7);
+    transform: skewX(2deg);
+  }
+  100% {
+    filter: grayscale(1) contrast(1);
+    transform: none;
+  }
 }
