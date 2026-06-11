@@ -99,9 +99,7 @@
           <div class="track-title" id="trackTitle">MODEL CITIZEN — MALE TEARS</div>
 
           <div class="player-controls">
-            <button class="player-btn" id="prevBtn" aria-label="Previous song">‹‹</button>
             <button class="player-btn play" id="playBtn" aria-label="Play song">▶</button>
-            <button class="player-btn" id="nextBtn" aria-label="Next song">››</button>
 
             <span class="time" id="currentTime">0:00</span>
             <input class="progress" id="progressBar" type="range" min="0" max="100" value="0">
@@ -219,24 +217,13 @@
   </script>
 
   <script>
-    const playlist = [
-      {
-        title: "MODEL CITIZEN — MALE TEARS",
-        file: "assets/Model Citizen - Male Tears.mp3",
-        cover: "assets/model citizen art.jpg"
-      },
-      {
-        title: "MOHOXPOM - SENSI AFFECT, CHERNOBURKV",
-        file: "assets/МОНОХРОМ - Sensi Affect, Chernoburkv.mp3",
-        cover: "assets/monochrome art.jpg"
-      },
-      {
-        title: "MOONCHILD — FIELDS OF THE NEPHILIM",
-        file: "assets/Moonchild - Fields Of The Nephilim.mp3",
-        cover: "assets/moonchild art.jpg"
-      }
-    ];
+  const song = {
+  title: "Model Citizen - Male Tears",
+  src: "assets/Model Citizen - Male Tears.mp3",
+  cover: "assets/model citizen art.jpg"
 
+}
+    
     let currentTrack = 0;
 
     const audio = document.getElementById("audioPlayer");
