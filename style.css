@@ -316,9 +316,7 @@ body {
 }
 
 .player-controls {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+  grid-template-columns: 34px auto minmax(180px, 1fr) auto;
 }
 
 .player-btn {
@@ -403,9 +401,8 @@ body {
   .track-title { font-size: .95rem; }
 
   .player-controls {
-    grid-template-columns: 30px 30px 30px auto 1fr auto;
-    gap: 6px;
-  }
+  grid-template-columns: 34px auto 1fr auto;
+}
 
   .player-btn {
     width: 30px;
