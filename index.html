@@ -318,5 +318,18 @@
 
     loadTrack(currentTrack);
   </script>
+  
+  <script>
+function glitchProfileCard() {
+  const card = document.querySelector(".profile-card");
+  card.classList.add("glitching");
+
+  setTimeout(() => {
+    card.classList.remove("glitching");
+  }, 450);
+}
+
+setInterval(glitchProfileCard, 12000);
+</script>
 </body>
 </html>
