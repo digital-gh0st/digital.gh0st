@@ -286,11 +286,10 @@
     });
   </script>
   
+<script>
 function glitchProfileCard() {
   const card = document.querySelector(".profile-card");
-
   card.classList.add("glitching");
-
   glitchAllBadges();
 
   setTimeout(() => {
@@ -299,5 +298,6 @@ function glitchProfileCard() {
 }
 
 setInterval(glitchProfileCard, 90000);
+</script>
 </body>
 </html>
