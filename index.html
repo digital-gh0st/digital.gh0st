@@ -99,14 +99,12 @@
           <div class="track-title" id="trackTitle">MODEL CITIZEN — MALE TEARS</div>
 
           <div class="player-controls">
-            <button class="player-btn play" id="playBtn" aria-label="Play song">▶</button>
+  <button class="player-btn play" id="playBtn">▶</button>
+  <span class="time" id="currentTime">0:00</span>
+  <input class="progress" id="progressBar" type="range" min="0" max="100" value="0">
+  <span class="time" id="duration">0:00</span>
 
-            <span class="time" id="currentTime">0:00</span>
-            <input class="progress" id="progressBar" type="range" min="0" max="100" value="0">
-            <span class="time" id="duration">0:00</span>
-          </div>
-
-          <audio id="audioPlayer" preload="metadata"></audio>
+          <audio id="audioPlayer" src="assets/Model Citizen - Male Tears.mp3" preload="metadata"></audio>
         </div>
       </section>
 
