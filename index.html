@@ -297,7 +297,11 @@ function glitchProfileCard() {
   }, 550);
 }
 
-setInterval(glitchProfileCard, 90000);
+window.addEventListener("load", () => {
+  glitchProfileCard();
+});
+
+setInterval(glitchProfileCard, 30000);
 </script>
 </body>
 </html>
