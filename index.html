@@ -272,18 +272,6 @@
       }
     });
 
-    nextBtn.addEventListener("click", () => {
-      currentTrack = (currentTrack + 1) % playlist.length;
-      loadTrack(currentTrack);
-      playTrack();
-    });
-
-    prevBtn.addEventListener("click", () => {
-      currentTrack = (currentTrack - 1 + playlist.length) % playlist.length;
-      loadTrack(currentTrack);
-      playTrack();
-    });
-
     audio.addEventListener("loadedmetadata", () => {
       durationEl.textContent = formatTime(audio.duration);
     });
@@ -302,8 +290,6 @@
       loadTrack(currentTrack);
       playTrack();
     });
-
-    loadTrack(currentTrack);
   </script>
   
   <script>
