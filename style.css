@@ -424,7 +424,11 @@ body {
   .time { font-size: .7rem; }
 }
 
-
+.profile-card::before,
+.profile-card::after {
+  opacity: 0;
+  visibility: hidden;
+}
 
 .profile-card.glitching {
 
@@ -477,7 +481,7 @@ body {
 .profile-card.glitching::before {
 
   content: "";
-
+  visibility: visible;
   position: absolute;
 
   inset: -12px;
@@ -531,7 +535,7 @@ body {
 .profile-card.glitching::after {
 
   content: "";
-
+  visibility: visible;
   position: absolute;
 
   inset: 0;
