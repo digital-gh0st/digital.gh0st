@@ -355,9 +355,16 @@ function glitchRandomBadge() {
   const original = badge.dataset.original || badge.textContent;
   const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&!?/*+-";
 
+  badge.style.filter = "invert(1) contrast(2) brightness(1.25)";
+
   let corruption = 0.95;
 
   const interval = setInterval(() => {
+    badge.style.filter =
+      Math.random() > .45
+        ? "invert(1) contrast(2) brightness(1.25)"
+        : "invert(1) contrast(1.4) brightness(.9)";
+
     badge.textContent = original
       .split("")
       .map((char) => {
@@ -374,6 +381,7 @@ function glitchRandomBadge() {
     if (corruption <= 0) {
       clearInterval(interval);
       badge.textContent = original;
+      badge.style.filter = "";
     }
   }, 85);
 }
