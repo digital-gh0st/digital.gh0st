@@ -831,36 +831,35 @@ body {
 /* CORRUPTION BLOCKS */
 
 @keyframes corruptBlocks {
-
   0% {
-
     clip-path: inset(0 0 100% 0);
-
   }
 
-  25% {
-
+  20% {
     clip-path: inset(8% 0 70% 0);
-
   }
 
-  45% {
-
+  40% {
     clip-path: inset(35% 0 35% 0);
-
   }
 
-  70% {
-
+  60% {
     clip-path: inset(68% 0 8% 0);
+  }
 
+  80% {
+    clip-path: inset(35% 0 35% 0);
+  }
+
+  95% {
+    clip-path: inset(8% 0 70% 0);
   }
 
   100% {
-
-    clip-path: inset(100% 0 0 0);
- }
+    clip-path: inset(0 0 100% 0);
+  }
 }
+
 .badges span {
   opacity: 0;
   transform: translateY(16px);
