@@ -192,10 +192,12 @@
 function glitchAllText() {
   const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&!?/*+-";
   const textEls = document.querySelectorAll(
-    ".ghost-name, .handle-row, .badges span, .server-info h2, .server-info p, .track-title, .join"
+    ".ghost-name, .handle-row, .center-line, .badges span, .server-info h2, .server-info p, .track-title, .join"
   );
 
-  textEls.forEach(el => el.dataset.original = el.textContent);
+  if (!el.dataset.original) {
+  el.dataset.original = el.textContent;
+}
 
   let frame = 0;
 
