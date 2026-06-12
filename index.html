@@ -77,12 +77,17 @@
 
         <div class="server-info">
           <h2>.𝐗𝐈𝐈𝐈.²¹⁺</h2>
-          <p>
-            <span class="online"></span>
-            <span id="onlineCount">--</span> ONLINE
-            <span class="divider"></span>
-            <span id="memberCount">--</span> MEMBERS
-          </p>
+          <div class="server-stats">
+  <div>
+    <span class="online"></span>
+    <span class="server-stat-text"><span id="onlineCount">--</span> ONLINE</span>
+  </div>
+
+  <div>
+    <span class="divider"></span>
+    <span class="server-stat-text"><span id="memberCount">--</span> MEMBERS</span>
+  </div>
+</div>
         </div>
 
         <a class="join" href="https://discord.gg/xiii21" target="_blank">JOIN</a>
@@ -190,7 +195,7 @@ function glitchAllText() {
   const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&!?/*+-";
 
   const textEls = document.querySelectorAll(
-    ".ghost-name, .handle-row, .badges span, .server-info h2, .server-info p, .track-title, .join"
+    ".ghost-name, .handle-row, .badges span, .server-info h2, .server-stat-text, .track-title, .join"
   );
 
   textEls.forEach((el) => {
