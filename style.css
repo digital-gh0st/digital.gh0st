@@ -351,6 +351,23 @@ body {
   cursor: pointer;
 }
 
+.server-stats {
+  display: grid;
+  gap: 4px;
+  color: var(--soft);
+  font-size: .82rem;
+}
+
+.server-stats div {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.divider {
+  margin: 0;
+}
+
 @media (max-width: 560px) {
   .page { padding: 28px 14px; }
 
