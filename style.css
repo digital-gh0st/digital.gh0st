@@ -369,9 +369,10 @@ body {
 }
 
 .online-icon {
-  height: 12px;
   width: auto;
+  height: 12px;
   opacity: .9;
+  margin-right: 2px;
 }
 
 .member-icon {
