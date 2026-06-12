@@ -210,6 +210,36 @@ function glitchAllText() {
           : char;
       }).join("");
     });
+    
+    function glitchTypingLine() {
+  const target = document.getElementById("typingLine");
+  if (!target) return;
+
+  const original = target.textContent;
+  const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&!?/*+-";
+
+  let frame = 0;
+  const maxFrames = 10;
+
+  const scramble = setInterval(() => {
+    target.textContent = original
+      .split("")
+      .map((char) => {
+        if (char === " ") return char;
+        return Math.random() > .45
+          ? chars[Math.floor(Math.random() * chars.length)]
+          : char;
+      })
+      .join("");
+
+    frame++;
+
+    if (frame >= maxFrames) {
+      clearInterval(scramble);
+      target.textContent = original;
+    }
+  }, 45);
+}
 
     frame++;
 
