@@ -400,10 +400,12 @@ function glitchTypingLine() {
   if (!target) return;
 
   const messages = [
-    "YOU'RE NOT ALONE_",
+    "YOU ARE NOT ALONE_",
     "I SEE YOU_",
     "SIGNAL LOST_",
-    "ENTITY DETECTED_"
+    "FOUND YOU_",
+    "ENTITY DETECTED_",
+    "BEHIND YOU_"
   ];
 
   target.dataset.glitchPaused = "true";
@@ -432,7 +434,7 @@ function glitchProfileCard() {
 
 window.addEventListener("load", () => {
   setTimeout(glitchProfileCard, 2000);
-  setInterval(glitchProfileCard, 30000);
+  setInterval(glitchProfileCard, 20000);
   scheduleBadgeGlitch();
 });
 </script>
