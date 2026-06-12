@@ -368,6 +368,15 @@ body {
   margin: 0;
 }
 
+.member-icon {
+  width: 11px;
+  height: 11px;
+  object-fit: contain;
+  opacity: .45;
+  margin-right: 2px;
+  flex-shrink: 0;
+}
+
 @media (max-width: 560px) {
   .page { padding: 28px 14px; }
 
