@@ -920,3 +920,34 @@ body {
   filter: invert(1) brightness(1.5);
  }
 }
+.link-desync {
+  animation: linkDesync .4s ease;
+}
+
+@keyframes linkDesync {
+
+  0% {
+    filter: none;
+    transform: scale(1);
+  }
+
+  25% {
+    filter: invert(1);
+    transform: scale(1.08);
+  }
+
+  50% {
+    filter: none;
+  }
+
+  75% {
+    filter: invert(1);
+    transform: scale(1.04);
+  }
+
+  100% {
+    filter: none;
+    transform: scale(1);
+  }
+
+}
