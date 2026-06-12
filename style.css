@@ -370,7 +370,7 @@ body {
 
 .member-icon {
   width: auto;
-  height: 20px;
+  height: 15px;
   opacity: .25;
   filter: grayscale(1) brightness(.8);
   margin-right: 2px;
