@@ -348,6 +348,20 @@ function glitchAllText() {
   </script>
   
 <script>
+function glitchTypingLine() {
+  const target = document.getElementById("typingLine");
+  if (!target) return;
+
+  const original = target.textContent;
+  if (!original) return;
+
+  target.textContent = "SIGNAL LOST_";
+
+  setTimeout(() => {
+    target.textContent = original;
+  }, 550);
+}
+
 function glitchProfileCard() {
   const card = document.querySelector(".profile-card");
   if (!card) return;
@@ -361,8 +375,9 @@ function glitchProfileCard() {
   glitchAllText();
   glitchTypingLine();
 }
+
 function scheduleNextGlitch() {
-  const delay = Math.random() * 90000 + 30000; 
+  const delay = Math.random() * 90000 + 30000;
 
   setTimeout(() => {
     glitchProfileCard();
@@ -371,11 +386,9 @@ function scheduleNextGlitch() {
 }
 
 window.addEventListener("load", () => {
-  setTimeout(glitchProfileCard, 2100); 
-  scheduleNextGlitch(); 
+  setTimeout(glitchProfileCard, 2100);
+  scheduleNextGlitch();
 });
-
-setInterval(glitchProfileCard, 30000);
 </script>
 </body>
 </html>
