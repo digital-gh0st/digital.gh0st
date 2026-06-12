@@ -370,10 +370,10 @@ body {
 
 .member-icon {
   width: auto;
-  height: 12px;
-  filter: brightness(.7);
-  opacity: .35;
-  flex-shrink: 0;
+  height: 20px;
+  opacity: .25;
+  filter: grayscale(1) brightness(.8);
+  margin-right: 2px;
 }
 
 @media (max-width: 560px) {
