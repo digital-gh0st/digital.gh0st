@@ -350,13 +350,16 @@ function glitchAllText() {
 <script>
 function glitchProfileCard() {
   const card = document.querySelector(".profile-card");
+  if (!card) return;
 
   card.classList.add("glitching");
-  glitchAllText();
 
   setTimeout(() => {
     card.classList.remove("glitching");
   }, 550);
+
+  glitchAllText();
+  glitchTypingLine();
 }
 
 window.addEventListener("load", () => {
