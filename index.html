@@ -413,15 +413,17 @@ function glitchTypingLine() {
   ];
 
   target.dataset.glitchPaused = "true";
-
+  
+  const original = target.textContent;
+  
   target.textContent =
     messages[Math.floor(Math.random() * messages.length)];
-
+  
   setTimeout(() => {
+    target.textContent = original;
     target.dataset.glitchPaused = "false";
   }, 550);
 }
-
 function glitchProfileCard() {
   const card = document.querySelector(".profile-card");
   if (!card) return;
