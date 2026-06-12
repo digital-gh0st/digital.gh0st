@@ -355,7 +355,7 @@ function glitchRandomBadge() {
   const original = badge.dataset.original || badge.textContent;
   const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&!?/*+-";
 
-  let frame = 0;
+  let corruption = 0.95;
 
   const interval = setInterval(() => {
     badge.textContent = original
@@ -363,19 +363,19 @@ function glitchRandomBadge() {
       .map((char) => {
         if (char === " ") return char;
 
-        return Math.random() > .45
+        return Math.random() < corruption
           ? chars[Math.floor(Math.random() * chars.length)]
           : char;
       })
       .join("");
 
-    frame++;
+    corruption -= 0.09;
 
-    if (frame >= 18) {
+    if (corruption <= 0) {
       clearInterval(interval);
       badge.textContent = original;
     }
-  }, 65);
+  }, 85);
 }
 
 function scheduleBadgeGlitch() {
