@@ -369,12 +369,10 @@ body {
 }
 
 .member-icon {
-  width: 11px;
-  height: 11px;
-  object-fit: contain;
-  opacity: .45;
-  margin-right: 2px;
-  flex-shrink: 0;
+  width: auto;
+  height: 5px;
+  filter: brightness(.7);
+  opacity: .35;
 }
 
 @media (max-width: 560px) {
