@@ -187,7 +187,38 @@
       }, 45);
     }
 
-    setInterval(glitchAllBadges, 5000);
+    // setInterval(glitchAllBadges, 5000);
+
+function glitchAllText() {
+  const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&!?/*+-";
+  const textEls = document.querySelectorAll(
+    ".ghost-name, .handle-row, .center-line, .badges span, .server-info h2, .server-info p, .track-title, .join"
+  );
+
+  textEls.forEach(el => el.dataset.original = el.textContent);
+
+  let frame = 0;
+
+  const scramble = setInterval(() => {
+    textEls.forEach(el => {
+      const original = el.dataset.original;
+
+      el.textContent = original.split("").map(char => {
+        if (char === " ") return char;
+        return Math.random() > .45
+          ? chars[Math.floor(Math.random() * chars.length)]
+          : char;
+      }).join("");
+    });
+
+    frame++;
+
+    if (frame >= 10) {
+      clearInterval(scramble);
+      textEls.forEach(el => el.textContent = el.dataset.original);
+    }
+  }, 45);
+}
   </script>
 
   <script>
@@ -289,8 +320,9 @@
 <script>
 function glitchProfileCard() {
   const card = document.querySelector(".profile-card");
+
   card.classList.add("glitching");
-  glitchAllBadges();
+  glitchAllText();
 
   setTimeout(() => {
     card.classList.remove("glitching");
@@ -298,7 +330,7 @@ function glitchProfileCard() {
 }
 
 window.addEventListener("load", () => {
-  setTimeout(glitchProfileCard, 600);
+  setTimeout(glitchProfileCard, 1200);
 });
 
 setInterval(glitchProfileCard, 30000);
