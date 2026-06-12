@@ -868,7 +868,7 @@ body {
 .badges span {
   opacity: 0;
   transform: translateY(12px);
-  animation: badgeReveal .7s ease forwards;
+  animation: badgeReveal 1.2s ease forwards;
 }
 
 .badges span:nth-child(1) { animation-delay: .25s; }
