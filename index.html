@@ -361,9 +361,18 @@ function glitchProfileCard() {
   glitchAllText();
   glitchTypingLine();
 }
+function scheduleNextGlitch() {
+  const delay = Math.random() * 90000 + 30000; 
+
+  setTimeout(() => {
+    glitchProfileCard();
+    scheduleNextGlitch();
+  }, delay);
+}
 
 window.addEventListener("load", () => {
-  setTimeout(glitchProfileCard, 2100);
+  setTimeout(glitchProfileCard, 2100); 
+  scheduleNextGlitch(); 
 });
 
 setInterval(glitchProfileCard, 30000);
