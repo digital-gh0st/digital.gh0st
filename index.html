@@ -337,36 +337,53 @@ function glitchAllText() {
   </script>
   
 <script>
-function underscoreRandomBadgeChar() {
+let lastBadgeIndex = -1;
+
+function glitchRandomBadge() {
   const badges = document.querySelectorAll(".badges span");
   if (!badges.length) return;
 
-  const badge = badges[Math.floor(Math.random() * badges.length)];
+  let randomIndex;
+
+  do {
+    randomIndex = Math.floor(Math.random() * badges.length);
+  } while (badges.length > 1 && randomIndex === lastBadgeIndex);
+
+  lastBadgeIndex = randomIndex;
+
+  const badge = badges[randomIndex];
   const original = badge.dataset.original || badge.textContent;
+  const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&!?/*+-";
 
-  const validIndexes = original
-    .split("")
-    .map((char, index) => char === " " ? null : index)
-    .filter(index => index !== null);
+  let frame = 0;
 
-  const randomIndex = validIndexes[Math.floor(Math.random() * validIndexes.length)];
+  const interval = setInterval(() => {
+    badge.textContent = original
+      .split("")
+      .map((char) => {
+        if (char === " ") return char;
 
-  badge.textContent =
-    original.substring(0, randomIndex) +
-    "_" +
-    original.substring(randomIndex + 1);
+        return Math.random() > .45
+          ? chars[Math.floor(Math.random() * chars.length)]
+          : char;
+      })
+      .join("");
 
-  setTimeout(() => {
-    badge.textContent = original;
-  }, 700);
+    frame++;
+
+    if (frame >= 10) {
+      clearInterval(interval);
+      badge.textContent = original;
+    }
+  }, 45);
 }
 
-function scheduleUnderscoreBadgeGlitch() {
-  const delay = Math.random() * 12000 + 5000;
+function scheduleBadgeGlitch() {
+  const delay = Math.random() * 15000 + 5000;
 
   setTimeout(() => {
-    underscoreRandomBadgeChar();
-    scheduleUnderscoreBadgeGlitch();
+    glitchRandomBadge();
+    scheduleBadgeGlitch();
   }, delay);
 }
 
@@ -408,7 +425,7 @@ function scheduleNextGlitch() {
 window.addEventListener("load", () => {
   setTimeout(glitchProfileCard, 2000);
   scheduleNextGlitch();
-  scheduleUnderscoreBadgeGlitch();
+  scheduleBadgeGlitch();
 });
 </script>
 </body>
