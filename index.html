@@ -387,11 +387,16 @@ function glitchRandomBadge() {
 }
 
 function scheduleBadgeGlitch() {
-  const delay = Math.random() * 15000 + 5000;
+  const delay = Math.random() * 15000 + 10000;
 
   setTimeout(() => {
-    glitchRandomBadge();
+
+    if (!document.querySelector(".profile-card").classList.contains("glitching")) {
+      glitchRandomBadge();
+    }
+
     scheduleBadgeGlitch();
+
   }, delay);
 }
 
