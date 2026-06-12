@@ -241,7 +241,7 @@ body {
   box-shadow: inset 0 0 28px rgba(255,255,255,.025);
 }
 
-.server-card img {
+.server-card > img {
   width: 66px;
   height: 66px;
   object-fit: cover;
@@ -369,10 +369,11 @@ body {
 }
 
 .member-icon {
-  width: auto !important;
-  height: 5px !important;
+  width: auto;
+  height: 5px;
   filter: brightness(.7);
   opacity: .35;
+  flex-shrink: 0;
 }
 
 @media (max-width: 560px) {
