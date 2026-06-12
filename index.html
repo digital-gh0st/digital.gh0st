@@ -337,6 +337,39 @@ function glitchAllText() {
   </script>
   
 <script>
+function underscoreRandomBadgeChar() {
+  const badges = document.querySelectorAll(".badges span");
+  if (!badges.length) return;
+
+  const badge = badges[Math.floor(Math.random() * badges.length)];
+  const original = badge.dataset.original || badge.textContent;
+
+  const validIndexes = original
+    .split("")
+    .map((char, index) => char === " " ? null : index)
+    .filter(index => index !== null);
+
+  const randomIndex = validIndexes[Math.floor(Math.random() * validIndexes.length)];
+
+  badge.textContent =
+    original.substring(0, randomIndex) +
+    "_" +
+    original.substring(randomIndex + 1);
+
+  setTimeout(() => {
+    badge.textContent = original;
+  }, 700);
+}
+
+function scheduleUnderscoreBadgeGlitch() {
+  const delay = Math.random() * 12000 + 5000;
+
+  setTimeout(() => {
+    underscoreRandomBadgeChar();
+    scheduleUnderscoreBadgeGlitch();
+  }, delay);
+}
+
 function glitchTypingLine() {
   const target = document.getElementById("typingLine");
   if (!target) return;
@@ -373,8 +406,9 @@ function scheduleNextGlitch() {
 }
 
 window.addEventListener("load", () => {
-  setTimeout(glitchProfileCard, 2100);
+  setTimeout(glitchProfileCard, 2000);
   scheduleNextGlitch();
+  scheduleUnderscoreBadgeGlitch();
 });
 </script>
 </body>
