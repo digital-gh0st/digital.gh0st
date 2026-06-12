@@ -124,9 +124,18 @@
     let deleting = false;
 
     function typeLoop() {
-      const phrase = typingPhrases[typingPhraseIndex];
 
-      if (!deleting) {
+  if (typingTarget.dataset.glitchPaused === "true") {
+
+    setTimeout(typeLoop, 100);
+
+    return;
+
+  }
+
+  const phrase = typingPhrases[typingPhraseIndex];
+
+  if (!deleting) {
         typingTarget.textContent = phrase.substring(0, typingCharIndex);
         typingCharIndex++;
 
@@ -332,13 +341,11 @@ function glitchTypingLine() {
   const target = document.getElementById("typingLine");
   if (!target) return;
 
-  const original = target.textContent;
-  if (!original) return;
-
+  target.dataset.glitchPaused = "true";
   target.textContent = "SIGNAL LOST_";
 
   setTimeout(() => {
-    target.textContent = original;
+    target.dataset.glitchPaused = "false";
   }, 550);
 }
 
