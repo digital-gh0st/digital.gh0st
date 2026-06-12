@@ -149,107 +149,82 @@
   </script>
 
   <script>
-    const glitchChars =
-"ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&!?/*+-";
-    const badgeEls = document.querySelectorAll(".badges span");
+const glitchChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&!?/*+-";
+const badgeEls = document.querySelectorAll(".badges span");
 
+badgeEls.forEach((badge) => {
+  badge.dataset.original = badge.textContent;
+});
+
+function glitchAllBadges() {
+  let frame = 0;
+  const maxFrames = 25;
+
+  const interval = setInterval(() => {
     badgeEls.forEach((badge) => {
-      badge.dataset.original = badge.textContent;
+      const original = badge.dataset.original;
+
+      badge.textContent = original
+        .split("")
+        .map((char) => {
+          if (char === " ") return char;
+          return Math.random() > 0.45
+            ? glitchChars[Math.floor(Math.random() * glitchChars.length)]
+            : char;
+        })
+        .join("");
     });
-
-    function glitchAllBadges() {
-      let frame = 0;
-      const maxFrames = 25;
-
-      const interval = setInterval(() => {
-        badgeEls.forEach((badge) => {
-          const original = badge.dataset.original;
-
-          badge.textContent = original
-            .split("")
-            .map((char) => {
-              if (char === " ") return char;
-              return Math.random() > 0.45
-                ? glitchChars[Math.floor(Math.random() * glitchChars.length)]
-                : char;
-            })
-            .join("");
-        });
-
-        frame++;
-
-        if (frame >= maxFrames) {
-          clearInterval(interval);
-          badgeEls.forEach((badge) => {
-            badge.textContent = badge.dataset.original;
-          });
-        }
-      }, 45);
-    }
-
-    // setInterval(glitchAllBadges, 5000);
-
-function glitchAllText() {
-  const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&!?/*+-";
-  const textEls = document.querySelectorAll(
-    ".ghost-name, .handle-row, .badges span, .server-info h2, .server-info p, .track-title, .join"
-  );
-
-  textEls.forEach(el => el.dataset.original = el.textContent);
-
-  let frame = 0;
-
-  const scramble = setInterval(() => {
-    textEls.forEach(el => {
-      const original = el.dataset.original;
-
-      el.textContent = original.split("").map(char => {
-        if (char === " ") return char;
-        return Math.random() > .45
-          ? chars[Math.floor(Math.random() * chars.length)]
-          : char;
-      }).join("");
-    });
-    
-    function glitchTypingLine() {
-  const target = document.getElementById("typingLine");
-  if (!target) return;
-
-  const original = target.textContent;
-  const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&!?/*+-";
-
-  let frame = 0;
-  const maxFrames = 10;
-
-  const scramble = setInterval(() => {
-    target.textContent = original
-      .split("")
-      .map((char) => {
-        if (char === " ") return char;
-        return Math.random() > .45
-          ? chars[Math.floor(Math.random() * chars.length)]
-          : char;
-      })
-      .join("");
 
     frame++;
 
     if (frame >= maxFrames) {
-      clearInterval(scramble);
-      target.textContent = original;
+      clearInterval(interval);
+      badgeEls.forEach((badge) => {
+        badge.textContent = badge.dataset.original;
+      });
     }
   }, 45);
 }
+
+function glitchAllText() {
+  const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&!?/*+-";
+
+  const textEls = document.querySelectorAll(
+    ".ghost-name, .handle-row, .badges span, .server-info h2, .server-info p, .track-title, .join"
+  );
+
+  textEls.forEach((el) => {
+    el.dataset.original = el.dataset.original || el.textContent;
+  });
+
+  let frame = 0;
+
+  const scramble = setInterval(() => {
+    textEls.forEach((el) => {
+      const original = el.dataset.original;
+
+      el.textContent = original
+        .split("")
+        .map((char) => {
+          if (char === " ") return char;
+          return Math.random() > 0.45
+            ? chars[Math.floor(Math.random() * chars.length)]
+            : char;
+        })
+        .join("");
+    });
 
     frame++;
 
     if (frame >= 10) {
       clearInterval(scramble);
-      textEls.forEach(el => el.textContent = el.dataset.original);
+      textEls.forEach((el) => {
+        el.textContent = el.dataset.original;
+      });
     }
   }, 45);
 }
-  </script>
+</script>
 
   <script>
     async function updateDiscordStats() {
