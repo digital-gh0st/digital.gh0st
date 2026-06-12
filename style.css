@@ -368,9 +368,15 @@ body {
   margin: 0;
 }
 
+.online-icon {
+  height: 12px;
+  width: auto;
+  opacity: .9;
+}
+
 .member-icon {
   width: auto;
-  height: 10px;
+  height: 12px;
   opacity: .25;
   filter: grayscale(1) brightness(.8);
   margin-right: 2px;
