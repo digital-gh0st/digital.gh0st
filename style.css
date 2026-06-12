@@ -370,14 +370,14 @@ body {
 
 .online-icon {
   width: auto;
-  height: 12px;
+  height: 14px;
   opacity: .9;
   margin-right: 2px;
 }
 
 .member-icon {
   width: auto;
-  height: 12px;
+  height: 14px;
   opacity: .25;
   filter: grayscale(1) brightness(.8);
   margin-right: 2px;
