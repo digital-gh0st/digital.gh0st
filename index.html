@@ -402,39 +402,6 @@ function scheduleBadgeGlitch() {
   }, 5000);
 }
 
-function desyncRandomLink() {
-
-  const links = document.querySelectorAll(".links a");
-
-  if (!links.length) return;
-
-  const link =
-    links[Math.floor(Math.random() * links.length)];
-
-  link.classList.add("link-desync");
-
-  setTimeout(() => {
-    link.classList.remove("link-desync");
-  }, 400);
-
-}
-
-function scheduleLinkDesync() {
-
-  const delay = Math.random() * 30000 + 15000;
-
-  setTimeout(() => {
-
-    if (!document.querySelector(".profile-card").classList.contains("glitching")) {
-      desyncRandomLink();
-    }
-
-    scheduleLinkDesync();
-
-  }, delay);
-
-}
-
 function glitchTypingLine() {
   const target = document.getElementById("typingLine");
   if (!target) return;
@@ -477,7 +444,6 @@ window.addEventListener("load", () => {
   setTimeout(glitchProfileCard, 2000);
   setInterval(glitchProfileCard, 20000);
   scheduleBadgeGlitch();
-  scheduleLinkDesync();
 });
 </script>
 </body>
