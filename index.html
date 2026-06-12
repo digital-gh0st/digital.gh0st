@@ -399,8 +399,15 @@ function glitchTypingLine() {
   const target = document.getElementById("typingLine");
   if (!target) return;
 
+  const messages = [
+    "YOU'RE NOT ALONE_",
+    "I SEE YOU_"
+  ];
+
   target.dataset.glitchPaused = "true";
-  target.textContent = "YOU'RE NOT ALONE_";
+
+  target.textContent =
+    messages[Math.floor(Math.random() * messages.length)];
 
   setTimeout(() => {
     target.dataset.glitchPaused = "false";
@@ -421,18 +428,9 @@ function glitchProfileCard() {
   glitchTypingLine();
 }
 
-function scheduleNextGlitch() {
-  const delay = Math.random() * 90000 + 30000;
-
-  setTimeout(() => {
-    glitchProfileCard();
-    scheduleNextGlitch();
-  }, delay);
-}
-
 window.addEventListener("load", () => {
-  setTimeout(glitchProfileCard, 2100);
-  scheduleNextGlitch();
+  setTimeout(glitchProfileCard, 2000);
+  setInterval(glitchProfileCard, 30000);
   scheduleBadgeGlitch();
 });
 </script>
